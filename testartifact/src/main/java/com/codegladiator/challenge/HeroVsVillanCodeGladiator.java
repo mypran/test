@@ -1,11 +1,10 @@
-package com.codegladiator.first;
+package com.codegladiator.challenge;
 
 /*
  * Enter your code here. Read input from STDIN. Print your output to STDOUT.
  * Your class should be named CandidateCode.
  */
 
-import java.io.*;
 import java.util.*;
 
 public class HeroVsVillanCodeGladiator {
@@ -106,9 +105,9 @@ Maxi is playing the game and at a particular time wants to know if it is possibl
 
 
 Input Format
-The first line of input consist of number of test cases, T.
+The challenge line of input consist of number of test cases, T.
 
-The first line of each test case consist of number of villains and player, N.
+The challenge line of each test case consist of number of villains and player, N.
 
 The second line of each test case consist of the N space separated strengths of Villains.
 

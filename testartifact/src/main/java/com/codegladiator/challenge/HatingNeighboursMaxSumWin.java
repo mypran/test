@@ -1,12 +1,11 @@
-package com.codegladiator.first;
+package com.codegladiator.challenge;
 
 /*
  * Enter your code here. Read input from STDIN. Print your output to STDOUT.
  * Your class should be named CandidateCode.
  */
 
-import java.io.*;
-        import java.util.*;
+import java.util.*;
 public class HatingNeighboursMaxSumWin {
     public static void main(String args[] ) throws Exception {
 
@@ -159,13 +158,13 @@ In the XYZ society, the neighbours hate each other for their attitude. Various a
 The President of the society, Mr. Singh, is a wise man and know that neighbours in society don't like each other. Also, he don't wish to become bad in front of people. So, he came up with an idea to design a program which will provide the list of integers forming maximum sum and thus all the members of the list will be given the gifts. The only problem with this idea is that he don't know programming so he is asking you to provide the correct list of integers. The people may be annoying but are smart and will fight if the list provided by you doesn't form the maximum sum.
 
 
-Note: The integer written on ticket of individuals may or may not be unique. In case, when there are two list with equal maximum sum, the list with first greater element would be considered. For better understanding, look at the explanation of Test case 4 in Sample Test Case. The tickets with integer 0 are not considered for winning the gifts.
+Note: The integer written on ticket of individuals may or may not be unique. In case, when there are two list with equal maximum sum, the list with challenge greater element would be considered. For better understanding, look at the explanation of Test case 4 in Sample Test Case. The tickets with integer 0 are not considered for winning the gifts.
 
 
 Input Format
-The first line of input consist of number of test cases, T.
+The challenge line of input consist of number of test cases, T.
 
-The first line of each test case consist of the number of houses (tickets distributed) in society, N.
+The challenge line of each test case consist of the number of houses (tickets distributed) in society, N.
 
 The second line of each test case consist of N space separated tickets with integer written on them.
 
