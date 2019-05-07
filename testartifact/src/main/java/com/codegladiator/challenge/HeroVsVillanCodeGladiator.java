@@ -1,50 +1,44 @@
 package com.codegladiator.challenge;
 
+
+/*
+ * Enter your code here. Read input from STDIN. Print your output to STDOUT.
+ * Your class should be named CandidateCode.
+ */
+
+/*
+ * Enter your code here. Read input from STDIN. Print your output to STDOUT.
+ * Your class should be named CandidateCode.
+ */
+
 /*
  * Enter your code here. Read input from STDIN. Print your output to STDOUT.
  * Your class should be named CandidateCode.
  */
 
 import java.util.*;
-
 public class HeroVsVillanCodeGladiator {
-    public static void main(String args[] ) {
-        int strengthOfVillanInt[];
-        int energyOfPlayerInt[];
+    public static void main(String args[] ) throws Exception {
 
         //Write code here
         Scanner scanner = new Scanner(System.in);
-
-        int noOfTestCases = Optional.ofNullable(scanner.nextLine())
-                .map(Integer::parseInt)
-                .orElse(0);
-        assert (noOfTestCases > 10 || noOfTestCases < 1)  : " Test Case count should be between 1 and 10, inclusive.";
+        int noOfTestCases = Integer.parseInt(scanner.nextLine());
         String noOfGames[] = new String[noOfTestCases];
 
         while(noOfTestCases > 0) {
+            int i=0;
+            int noOfPlayersOrVillans = Integer.parseInt(scanner.nextLine());
 
-            int noOfPlayersOrVillans = Optional.ofNullable(scanner.nextLine())
-                    .map(Integer::parseInt)
-                    .orElse(0);
-            assert (noOfPlayersOrVillans > 1000 || noOfPlayersOrVillans < 1) : " Palyers/Villans count should be between 1 and 1000, inclusive.";
+            String arr[] = scanner.nextLine().split(" ");
+            int strengthOfVillanInt[] = new int[arr.length];
 
-
-            strengthOfVillanInt = Arrays.stream(scanner.nextLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            for(int x: strengthOfVillanInt) {
-                assert (x < 1) : " Palyer energy," + x + " should be greater than or equal to one.";
+            String[] arr2 = scanner.nextLine().split(" ");
+            int energyOfPlayerInt[] = new int[arr2.length];
+            for(String val: arr2){
+                strengthOfVillanInt[i] = Integer.parseInt(arr[i]);
+                energyOfPlayerInt[i] = Integer.parseInt(val);
+                i++;
             }
-            assert(strengthOfVillanInt.length != noOfPlayersOrVillans) : "Palyers energy count should be equal to number of players, " + noOfPlayersOrVillans;
-
-
-            energyOfPlayerInt = Arrays.stream(scanner.nextLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            for(int x: energyOfPlayerInt) {
-                assert (x > 100000) : " Villan strength," + x + " should be less than or equal to 100000." ;
-            }
-            assert(energyOfPlayerInt.length != noOfPlayersOrVillans) : "Villans strength count should be equal to number of players, " + noOfPlayersOrVillans;
 
             noOfGames[noOfGames.length - noOfTestCases] = process(strengthOfVillanInt, energyOfPlayerInt);
             noOfTestCases --;
@@ -58,19 +52,59 @@ public class HeroVsVillanCodeGladiator {
     }
 
     private static String process(int[] strengthOfVillanInt, int[] energyOfPlayerInt){
-        Arrays.sort(strengthOfVillanInt);
-        Arrays.sort(energyOfPlayerInt);
-
-        int i = 0;
-        for(int x: energyOfPlayerInt){
-            if (x < strengthOfVillanInt[i]) {
+        strengthOfVillanInt = countingSort(strengthOfVillanInt);
+        boolean villanKilled;
+        int prevPlayerMax = 0;
+        for (int i = strengthOfVillanInt.length -1; i >=0 ; i--) {
+            villanKilled = false;
+            prevPlayerMax = 0;
+            for (int j = 0; j < energyOfPlayerInt.length; j++) {
+                if (energyOfPlayerInt[j] != -1
+                        && energyOfPlayerInt[j] > strengthOfVillanInt[i]
+                ) {
+                    if(prevPlayerMax == 0 ) {
+                        prevPlayerMax = j;
+                    } else if(energyOfPlayerInt[prevPlayerMax] < energyOfPlayerInt[j]) {
+                        prevPlayerMax = j;
+                    }
+                    villanKilled = true;
+                }
+            }
+            if(villanKilled == false){
                 return "LOSE";
             }
+            energyOfPlayerInt[prevPlayerMax] = -1;
         }
-
         return "WIN";
     }
+
+    private static int[] countingSort(int[] numbers) {
+        int max = numbers[0];
+        for (int i = 1; i < numbers.length; i++) {
+            if (numbers[i] > max)
+                max = numbers[i];
+        }
+
+        int[] sortedNumbers = new int[max+1];
+
+        for (int i = 0; i < numbers.length; i++) {
+            sortedNumbers[numbers[i]]++;
+        }
+
+        int insertPosition = 0;
+
+        for (int i = 0; i <= max; i++) {
+            for (int j = 0; j < sortedNumbers[i]; j++) {
+                numbers[insertPosition] = i;
+                insertPosition++;
+            }
+        }
+        return numbers;
+    }
 }
+
+
+
 
 /*
 
